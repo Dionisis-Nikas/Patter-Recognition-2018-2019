@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn import preprocessing
 from tqdm import tqdm_notebook
 
+
 users_ratings_columns = 'user id | item id | rating | timestamp'.split(' | ')
 movies_info_columns = '''movie id | movie title | release date | video release date | IMDb URL | unknown | Action | Adventure | Animation | Children's | Comedy | Crime | Documentary | Drama | Fantasy | Film-Noir | Horror | Musical | Mystery | Romance | Sci-Fi | Thriller | War | Western'''.split(' | ')
 users_info_columns = 'user id | age | gender | occupation | zip code'.split(' | ')
@@ -54,7 +55,7 @@ for user in tqdm_notebook(ratings_complete['user id'].unique()):
     tmplst.append(user)#add the user rating genres in a temporary list
 
     sums = tmp.iloc[:,1:20].sum(axis=0)#find the second to last column with the 1 and 0 of genres and sum all the genres of the user per column
-    print(tmplst)#user id
+
     for sumamount in sums:
         tmplst.append(sumamount)
     sum_list.append(tmplst)

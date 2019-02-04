@@ -155,15 +155,15 @@ class BSAS:
         N, l = data.shape
         if (first_time):
             minDist, maxDist = self.__getEuclideanDistances(data, l)
-            dists = np.save('comp-data/2-bsas-comp-data/min-max-euclidean-distances%s.npy' % (var),
+            dists = np.save('processed-data/BSAS-data/min-max-euclidean-distances%s.npy' % (var),
                             np.array([minDist, maxDist], dtype=np.float))
-            print ('saved: comp-data/2-bsas-comp-data/min-max-euclidean-distances%s.npy' % (var))
+            print ('saved: processed-data/BSAS-data/min-max-euclidean-distances%s.npy' % (var))
         else:
-            minDist, maxDist = np.load('comp-data/2-bsas-comp-data/min-max-euclidean-distances%s.npy' % (var))
-            print ('loaded: comp-data/2-bsas-comp-data/min-max-euclidean-distances%s.npy' % (var))
+            minDist, maxDist = np.load('processed-data/BSAS-data/min-max-euclidean-distances%s.npy' % (var))
+            print ('loaded: processed-data/BSAS-data/min-max-euclidean-distances%s.npy' % (var))
 
         meanDist = (minDist + maxDist) / 2
-        theta_min = 0.25 * meanDist;
+        theta_min = 0.25 * meanDist
         theta_max = 1.75 * meanDist
 
         s = (theta_max - theta_min) / (n_theta - 1)
@@ -183,26 +183,29 @@ class BSAS:
                         max_clusters = clustersN
                 total_clusters = total_clusters + [max_clusters]
 
-            np.save('comp-data/2-bsas-comp-data/total_clusters%s.npy' % (var), np.array(total_clusters, dtype=np.int))
-            print ('saved: comp-data/2-bsas-comp-data/total_clusters.npy')
-            np.save('comp-data/2-bsas-comp-data/total_theta%s.npy' % (var), np.array(total_theta, dtype=np.float))
-            print ('saved: comp-data/2-bsas-comp-data/total_theta.npy')
+            np.save('processed-data/BSAS-data/total_clusters%s.npy' % (var), np.array(total_clusters, dtype=np.int))
+            print ('saved: processed-data/BSAS-data/total_clusters.npy')
+            np.save('processed-data/BSAS-data/total_theta%s.npy' % (var), np.array(total_theta, dtype=np.float))
+            print ('saved: processed-data/BSAS-data/total_theta.npy')
         else:
-            total_clusters = np.load('comp-data/2-bsas-comp-data/total_clusters%s.npy' % (var))
-            print ('loaded: comp-data/2-bsas-comp-data/total_clusters%s.npy' % (var))
-            total_theta = np.load('comp-data/2-bsas-comp-data/total_theta%s.npy' % (var))
-            print ('loaded: comp-data/2-bsas-comp-data/total_theta%s.npy' % (var))
+            total_clusters = np.load('processed-data/BSAS-data/total_clusters%s.npy' % (var))
+            print ('loaded: processed-data/BSAS-data/total_clusters%s.npy' % (var))
+            total_theta = np.load('processed-data/BSAS-data/total_theta%s.npy' % (var))
+            print ('loaded: processed-data/BSAS-data/total_theta%s.npy' % (var))
 
         if (plot_graph == True):
             plt.plot(total_theta, total_clusters, 'b-')
+            print(total_clusters)
             plt.xlabel('theta')
             plt.ylabel('#clusters')
             plt.title('#clusters versus theta')
             plt.grid()
             plt.show()
 
-        opt_cluster = self.__findOptimalCluster(total_clusters)  # print (opt_cluster)
-        opt_theta = self.__findOptimalTheta(opt_cluster, total_clusters, total_theta)  # print (opt_theta)
+        opt_cluster = self.__findOptimalCluster(total_clusters)
+        print (opt_cluster)
+        opt_theta = self.__findOptimalTheta(opt_cluster, total_clusters, total_theta)
+        print (opt_theta)
 
         self.theta = opt_theta
         self.q = opt_cluster
@@ -211,6 +214,7 @@ class BSAS:
         real_centroids = {}
         for key in self.clusters:
             real_centroids[key] = self.__getCentroid(self.centroids[key], self.clusters[key].shape)
+
         return self.clusters, real_centroids
 
     def specs(self):
