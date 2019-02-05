@@ -28,13 +28,13 @@ theta_, q_
 theta2_, q2_ = clf2.specs()
 theta2_, q2_
 
-order_minimax = np.random.permutation(range(X_minimax.shape[0]))
-# order_minimax = np.load('comp-data/2-bsas-comp-data/order-minimax.npy')
+#order_minimax = np.random.permutation(range(X_minimax.shape[0]))
+order_minimax = np.load('processed-data/BSAS-data/order-minimax.npy')
 #The order that gave the max. number of clusters
 clf.fit(X_minimax.T, order_minimax)
 
-order = np.random.permutation(range(X_stdscl.shape[0]))
-# order = np.load('comp-data/2-bsas-comp-data/order-stdscl.npy')
+#order = np.random.permutation(range(X_stdscl.shape[0]))
+order = np.load('processed-data/BSAS-data/order-stdscl.npy')
 # The order that gave the max. number of clusters
 clf2.fit(X_stdscl.T, order)
 
