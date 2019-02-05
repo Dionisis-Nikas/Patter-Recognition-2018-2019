@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0745188d-b510-433e-90bc-dbc7c5d7a932" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/least_squares_classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/multi_layer_perceptron_classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BSAS_clustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/BSAS_clustering.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/centroids-minimax.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/centroids-minimax.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/centroids-stdscl.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/centroids-stdscl.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/centroids-stdscl.npy-EXPERIMENTAL.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/clusters-minimax.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/clusters-minimax.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/clusters-stdscl-EXPERIMENTAL.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/clusters-stdscl.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/clusters-stdscl.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/order-minimax.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/order-minimax.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/order-stdscl.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/order-stdscl.npy" afterDir="false" />
-    </list>
+    <list default="true" id="0745188d-b510-433e-90bc-dbc7c5d7a932" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +71,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multi_layer_perceptron_classifier.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="multi_layer_perceptron_classifier.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/multi_layer_perceptron_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="56">
@@ -97,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BSAS_algorithm.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BSAS_algorithm.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BSAS_algorithm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="38" column="26" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+            <state relative-caret-position="98">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="13" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -142,6 +128,7 @@
       <find>df3</find>
       <find>processed_data</find>
       <find>comp-data/4a-training-dataset-creation</find>
+      <find>df</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -516,16 +503,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BSAS_algorithm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="38" column="26" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BSAS_clustering.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
@@ -562,6 +539,16 @@
           <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BSAS_algorithm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
