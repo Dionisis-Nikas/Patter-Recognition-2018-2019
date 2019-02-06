@@ -11,11 +11,11 @@ users_info_columns = 'user id | age | gender | occupation | zip code'.split(' | 
 ##
 #ΑΥΤΟ ΜΠΟΡΟΥΜΕ ΝΑ ΤΟ ΑΛΛΑΞΟΥΜΕ ΜΕ ΤΑ path ΤΟΥ ΥΠΟΛΟΓΙΣΤΗ ΜΑΣ ΑΠΛΑ ΓΙΑ ΝΑ ΜΗΝ ΒΑΖΟΥΜΕ ΚΑΘΕ ΦΟΡΑ ΔΙΑΦΟΡΕΤΙΚΑ ΣΤΟ ΤΕΛΟΣ ΤΟ ΑΛΛΑΖΟΥΜΕ
 ##
-users_ratings_url = 'http://files.grouplens.org/datasets/movielens/ml-100k/u.data'
-movies_info_url  = 'http://files.grouplens.org/datasets/movielens/ml-100k/u.item'
-users_info_url    = 'http://files.grouplens.org/datasets/movielens/ml-100k/u.user'
-genres_info_url  = 'http://files.grouplens.org/datasets/movielens/ml-100k/u.genre'
-ocuppation_info_url    = 'http://files.grouplens.org/datasets/movielens/ml-100k/u.occupation'
+users_ratings_url = 'ml-100k/u.data'
+movies_info_url = 'ml-100k/u.item'
+users_info_url = 'ml-100k/u.user'
+genres_info_url = 'ml-100k/u.genre'
+ocuppation_info_url = 'ml-100k/u.occupation'
 
 
 
@@ -30,10 +30,13 @@ movies = pd.read_csv(movies_info_url, delimiter='|', header=None, names=movies_i
 users = pd.read_csv(users_info_url, delimiter='|', header=None, names=users_info_columns, encoding='latin-1')
 
 genres = pd.read_csv(genres_info_url, delimiter='|', header=None, names=['genre_id', 'genre_code'], encoding='latin-1')
+#keep only the column with the id of the genre and create a vector (transpose of genre_id)
 genres = genres[['genre_id']]
 
 ocuppation = pd.read_csv(ocuppation_info_url, delimiter='|', header=None, names=['ocuppation_id'], encoding='latin-1')
+#keep only the column with the id of the occupation and create a vector (transpose of occupation_id)
 ocuppation = ocuppation[['ocuppation_id']]
+
 
 
 #join καθε item με το αντιστοιχο movie
@@ -70,3 +73,6 @@ x_stdscl = preprocessing.scale(x, axis=1)
 np.save('processed-data/user-feature-set-orig.npy', x)
 np.save('processed-data/user-feature-set-minimax.npy', x_minimax_scaled)
 np.save('processed-data/user-feature-set-stdscl.npy', x_stdscl)
+origin = np.load('processed-data//test/user-feature-set-orig.npy')
+minmaxiii = np.load('processed-data//test/user-feature-set-minimax.npy')
+stds = np.load('processed-data//test/user-feature-set-stdscl.npy')

@@ -4,17 +4,16 @@ from matplotlib import style;  style.use('ggplot')
 
 import numpy as np
 import pandas as pd
-#from pandas.tools.plotting import parallel_coordinates ΤΟ ΣΥΓΚΕΚΡΙΜΕΝΟ ΔΕΝ ΜΟΥ ΤΟ ΦΟΡΤΩΝΕ ΚΑΙ ΔΕΝ ΧΡΕΙΑΣΤΗΚΕ ΝΑ ΤΟ ΧΡΗΣΙΜΟΠΟΙΗΣΩ ΝΟΜΙΖΩ
 from sklearn.decomposition import PCA as pca_decom
 
-X = np.load('comp-data/1-preprocessing-comp-data/user-feature-set-stdscl.npy')
+X = np.load('processed-data/user-feature-set-stdscl.npy')
 
 #  ΤΟ y_bsas ΠΕΡΙΕΧΕΙ ΤΙΣ ΕΤΙΚΕΤΕΣ ΟΜΑΔΟΠΟΙΗΣΗΣ ΒΑΣΗ ΤΟΥ bsas ΑΛΓΟΡΙΘΜΟΥ
-label_bsas = np.load('comp-data/2-bsas-comp-data/clusters-stdscl.npy')
+label_bsas = np.load('processed-data/BSAS-data/clusters-stdscl.npy')
 # ΤΟ y_kmeans ΠΕΡΙΕΧΕΙ ΤΙΣ ΕΤΙΚΕΤΕΣ ΟΜΑΔΟΠΟΙΗΣΗ ΒΑΣΗ ΤΟΥ k-means ΑΛΓΟΡΙΘΜΟΥ
-label_kmeans = np.load('comp-data/3a-k-means-comp-data/clusters.npy')
+label_kmeans = np.load('processed-data/clusters.npy')
 #ΤΟ y_hiercl ΠΕΡΙΕΧΕΙ ΤΙΣ
-label_hiercl = np.load('comp-data/3b-hierarchical-clustering-comp-data/clusters_.npy')
+label_hiercl = np.load('processed-data/clusters_.npy')
 
 #ΤΟ pca ΕΙΝΑΙ ΓΙΑ ΤΑ ΓΡΑΦΗΜΑΤΑ ΠΟΥ ΘΑ ΓΙΝΟΥΝ PLOT
 pca = pca_decom(n_components=2) #2 ΔΙΑΣΤΑΣΕΙΣ ΓΙΑ ΤΗΝ ΜΕΤΑΤΡΟΠΗ PCA
@@ -36,7 +35,6 @@ tmp[2] = label_bsas
 
 c_bsas_pca = tmp.groupby([2]).mean()
 c_bsas_pca = c_bsas_pca.values
-c_bsas_pca
 
 plt.figure(1, figsize=(25, 10))
 plt.title('PCA RESULT PLOT WITH BSAS ALGORITHM') #Ο ΤΙΤΛΟΣ

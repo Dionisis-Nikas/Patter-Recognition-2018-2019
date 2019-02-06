@@ -1,34 +1,36 @@
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as matplot
 import numpy as np
-import pandas as pd
 from scipy.spatial.distance import euclidean
 from tqdm import tqdm
 
 
-def addOneHot(df):
-    return df.join(pd.get_dummies(df))
-
-
 class BSAS:
+    # The constructor of an BSAS object
     def __init__(self, theta=None, q=None):
-        # theta: Dissimilarity_Threshold
-        # q: Max #Clusters
+        # theta: the dissimilarity threshold
+        # q: the max number of clusters
         self.theta = theta
         self.q = q
+
+        # Our list of the clusters and
+        # centroids that will help us later
         self.clusters = {}
         self.centroids = {}
 
-    def __getCentroid(self, X, Y):
+    def param(self):
+        return self.theta, self.q
+
+    def getCentroid(self, X, Y):
         try:
-            probe = Y[1]
+
             return np.divide(X, Y[0])
         except:
             return X
 
-    def __findClosestCluster(self, clusters, centroids, sample):
+    def closetCluster(self, clusters, centroids, sample):
         centID = 0
         cluster_population = clusters[centID].shape
-        centroid = self.__getCentroid(centroids[centID], cluster_population)
+        centroid = self.getCentroid(centroids[centID], cluster_population)
 
         minDist = euclidean(centroid, sample)
         try:
@@ -36,7 +38,7 @@ class BSAS:
                 if (cntID == 0):
                     continue
                 cluster_population = clusters[cntID].shape
-                centroid = self.__getCentroid(centroids[cntID], cluster_population)
+                centroid = self.getCentroid(centroids[cntID], cluster_population)
                 tmp = euclidean(centroid, sample)
                 if (tmp < minDist):
                     minDist = tmp
@@ -127,21 +129,21 @@ class BSAS:
         return theta_avg
 
     def fit(self, data, order):
-        m = 1  # Clusters/Centroids
-        clusters = {};
+        m = 1  # Count of cluster/centroids
+        clusters = {}
         centroids = {}
 
-        first_sample = data[:, order[0]]
-        clusters[m - 1] = first_sample;
-        centroids[m - 1] = np.add(np.zeros_like(first_sample), first_sample)
+        sample_one = data[:, order[0]]
+        clusters[m - 1] = sample_one
+        centroids[m - 1] = np.add(np.zeros_like(sample_one), sample_one)
 
         N, l = data.shape
         for i in range(1, l):
             sample = data[:, order[i]]
-            dist, k = self.__findClosestCluster(clusters, centroids, sample)
+            dist, k = self.closetCluster(clusters, centroids, sample)
             if ((dist > self.theta) and (m < self.q)):
                 m += 1
-                clusters[m - 1] = sample;
+                clusters[m - 1] = sample
                 centroids[m - 1] = np.add(np.zeros_like(sample), sample)
             else:
                 clusters[k] = np.vstack((clusters[k], sample))
@@ -164,14 +166,16 @@ class BSAS:
 
         meanDist = (minDist + maxDist) / 2
         theta_min = 0.25 * meanDist
-        theta_max = 1.75 * meanDist
+        theta_max = 0.75 * meanDist
 
         s = (theta_max - theta_min) / (n_theta - 1)
+        print (theta_min,theta_max,s)
 
         if (first_time):
             total_clusters = []
             total_theta = np.arange(theta_min, theta_max + s, s)
             for theta in tqdm(total_theta, desc=('Running BSAS...')):
+
                 max_clusters = -np.inf
                 for i in np.arange(n_times):
                     clf = BSAS(theta=theta, q=l)
@@ -181,7 +185,9 @@ class BSAS:
                     clustersN = len(clusters)
                     if (clustersN > max_clusters):
                         max_clusters = clustersN
+
                 total_clusters = total_clusters + [max_clusters]
+
 
             np.save('processed-data/BSAS-data/total_clusters%s.npy' % (var), np.array(total_clusters, dtype=np.int))
             print ('saved: processed-data/BSAS-data/total_clusters.npy')
@@ -194,13 +200,13 @@ class BSAS:
             print ('loaded: processed-data/BSAS-data/total_theta%s.npy' % (var))
 
         if (plot_graph == True):
-            plt.plot(total_theta, total_clusters, 'b-')
+            matplot.plot(total_theta, total_clusters, 'b-')
             print(total_clusters)
-            plt.xlabel('theta')
-            plt.ylabel('#clusters')
-            plt.title('#clusters versus theta')
-            plt.grid()
-            plt.show()
+            matplot.xlabel('theta')
+            matplot.ylabel('Nu. of clusters')
+            matplot.title('Nu. clusters in corellation to theta')
+            matplot.grid()
+            matplot.show()
 
         opt_cluster = self.__findOptimalCluster(total_clusters)
         print (opt_cluster)
@@ -213,9 +219,8 @@ class BSAS:
     def predict(self):
         real_centroids = {}
         for key in self.clusters:
-            real_centroids[key] = self.__getCentroid(self.centroids[key], self.clusters[key].shape)
+            real_centroids[key] = self.getCentroid(self.centroids[key], self.clusters[key].shape)
 
         return self.clusters, real_centroids
 
-    def specs(self):
-        return self.theta, self.q
+
