@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0745188d-b510-433e-90bc-dbc7c5d7a932" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BSAS_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/BSAS_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BSAS_clustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/BSAS_clustering.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_Preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_Preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hierarchical.py" beforeDir="false" afterPath="$PROJECT_DIR$/hierarchical.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k-means.py" beforeDir="false" afterPath="$PROJECT_DIR$/k-means.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots.py" beforeDir="false" afterPath="$PROJECT_DIR$/plots.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/centroids-minimax.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/centroids-minimax.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/centroids-stdscl.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/centroids-stdscl.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/clusters-minimax.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/clusters-minimax.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/clusters-stdscl.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/clusters-stdscl.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/order-minimax.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/order-minimax.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/order-stdscl.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/order-stdscl.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/user-feature-set-minimax.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/user-feature-set-minimax.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BSAS_new.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/final.csv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -83,11 +71,6 @@
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="final.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/final.csv">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="BSAS_algorithm.py" pinned="false" current-in-tab="false">
