@@ -1,7 +1,10 @@
+import pandas as pd
+
 import matplotlib.pyplot as matplot
 import numpy as np
 from scipy.spatial.distance import euclidean
 from tqdm import tqdm
+
 
 
 class BSAS:
@@ -22,7 +25,7 @@ class BSAS:
 
     def getCentroid(self, X, Y):
         try:
-
+            probe = Y[1]
             return np.divide(X, Y[0])
         except:
             return X
