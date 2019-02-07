@@ -1,22 +1,23 @@
-from matplotlib import style;  style.use('ggplot')
+
 import numpy as np
 from scipy.spatial.distance import cdist
 import pandas as pd
 import BSAS_algorithm as bsalg
 
 
+
 #The data_gaussian contains the samples normalized with mean = 0 and std = 1 (gaussian -normal- distribution)
 #
-data_gaussian = np.load('processed-data/user-feature-set-stdscl.npy')
+data_gaussian = np.load('processed-data/user-feature-set-gaussian.npy')
 
 
 
 model_gaussian = bsalg.BSAS()
-model_gaussian.fit_best(data_gaussian.T, first_time=False, n_times=50, dataname='stdscl', plot_graph=True)
+model_gaussian.fit_best(data_gaussian.T, load_precalculated=False, n_times=50)
 theta_gaussian, q_ = model_gaussian.param()
 
-#order = np.random.permutation(range(data_gaussian.shape[0]))
-order = np.load('processed-data/BSAS-data/order-stdscl.npy')
+order2 = np.random.permutation(range(data_gaussian.shape[0]))
+order = np.load('processed-data/BSAS-data/order-gaussian.npy')
 # The order that gave the max. number of clusters
 model_gaussian.fit(data_gaussian.T, order)
 
@@ -45,6 +46,6 @@ print(clusters_stdscl)
 print(new_centroids_stdscl)
 
 
-np.save('processed-data/BSAS-data/order-stdscl.npy', order)
-np.save('processed-data/BSAS-data/clusters-stdscl.npy', clusters_stdscl)
-np.save('processed-data/BSAS-data/centroids-stdscl.npy', new_centroids_stdscl)
+#np.save('processed-data/BSAS-data/order-gaussian.npy', order)
+np.save('processed-data/BSAS-data/clusters-gaussian.npy', clusters_stdscl)
+np.save('processed-data/BSAS-data/centroids-gaussian.npy', new_centroids_stdscl)
