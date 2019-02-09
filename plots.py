@@ -6,10 +6,10 @@ import numpy as np
 import pandas as pd
 from sklearn.decomposition import PCA as pca_decom
 
-X = np.load('processed-data/user-feature-set-stdscl.npy')
+X = np.load('processed-data/user-feature-set-gaussian.npy')
 
 #  ΤΟ y_bsas ΠΕΡΙΕΧΕΙ ΤΙΣ ΕΤΙΚΕΤΕΣ ΟΜΑΔΟΠΟΙΗΣΗΣ ΒΑΣΗ ΤΟΥ bsas ΑΛΓΟΡΙΘΜΟΥ
-label_bsas = np.load('processed-data/BSAS-data/clusters-stdscl.npy')
+label_bsas = np.load('processed-data/BSAS-data/clusters-gaussian.npy')
 # ΤΟ y_kmeans ΠΕΡΙΕΧΕΙ ΤΙΣ ΕΤΙΚΕΤΕΣ ΟΜΑΔΟΠΟΙΗΣΗ ΒΑΣΗ ΤΟΥ k-means ΑΛΓΟΡΙΘΜΟΥ
 label_kmeans = np.load('processed-data/clusters.npy')
 #ΤΟ y_hiercl ΠΕΡΙΕΧΕΙ ΤΙΣ

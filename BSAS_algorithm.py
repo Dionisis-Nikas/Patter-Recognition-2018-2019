@@ -20,7 +20,7 @@ class BSAS:
         self.clusters = {}
         self.centroids = {}
 
-    def fit_best(self, data, n_times=20, n_theta=50, load_precalculated=True):
+    def fit_best(self, data, n_times=200, n_theta=50, load_precalculated=True):
 
         N, l = data.shape
         if not(load_precalculated):
@@ -37,7 +37,7 @@ class BSAS:
 
         s = (theta_max - theta_min) / (n_theta - 1)
         print(theta_min, theta_max, s)
-
+        order1 = np.load('processed-data/BSAS-data/order-gaussian.npy')
         if not (load_precalculated):
             total_clusters = []
             total_theta = np.arange(theta_min, theta_max + s, s)
@@ -50,14 +50,18 @@ class BSAS:
                     clf.fit(data, order)
                     clusters, centroids = clf.predict()
                     clustersN = len(clusters)
+
                     if (clustersN > max_clusters):
+                        if np.array_equal(order1,order):
+                            print("FOUND IT")
+                            np.save('processed-data/BSAS-data/orderFOUND.npy')
                         max_clusters = clustersN
                         order_max = order
                 total_clusters = total_clusters + [max_clusters]
 
             np.save('processed-data/BSAS-data/total_clusters-gaussian.npy', np.array(total_clusters, dtype=np.int))
             print('saved: processed-data/BSAS-data/total_clusters.npy')
-            np.save('processed-data/BSAS-data/order-gaussian.npy', order)
+            np.save('processed-data/BSAS-data/order-gaussian-12.npy', order_max)
             print('saved: processed-data/BSAS-data/order-gaussian.npy')
             np.save('processed-data/BSAS-data/total_theta-gaussian.npy', np.array(total_theta, dtype=np.float))
             print('saved: processed-data/BSAS-data/total_theta.npy')

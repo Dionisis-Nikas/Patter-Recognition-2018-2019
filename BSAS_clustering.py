@@ -1,4 +1,12 @@
+#######################################################################
+# CLUSTERING USING THE BSAS ALGORITHM AND OUR GAUSSIAN SCALED DATASET #
+#######################################################################
 
+
+
+#######################################################################
+#                   IMPORT LIBRARIES                                  #
+#######################################################################
 import numpy as np
 from scipy.spatial.distance import cdist
 import pandas as pd
@@ -6,15 +14,16 @@ import BSAS_algorithm as bsalg
 
 
 
+#######################################################################
+#                      LOAD THE DATASET                               #
+#######################################################################
 #The data_gaussian contains the samples normalized with mean = 0 and std = 1 (gaussian -normal- distribution)
 #
 data_gaussian = np.load('processed-data/user-feature-set-gaussian.npy')
 
-
-
 model_gaussian = bsalg.BSAS()
-model_gaussian.fit_best(data_gaussian.T, load_precalculated=False, n_times=50)
-theta_gaussian, q_ = model_gaussian.param()
+model_gaussian.fit_best(data_gaussian.T, load_precalculated=True, n_times=50)
+theta_params, q_clusters = model_gaussian.param()
 
 order2 = np.random.permutation(range(data_gaussian.shape[0]))
 order = np.load('processed-data/BSAS-data/order-gaussian.npy')
