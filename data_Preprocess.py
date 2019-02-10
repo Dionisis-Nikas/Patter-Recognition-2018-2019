@@ -64,15 +64,11 @@ for user in tqdm_notebook(ratings_complete['user id'].unique()):
     sum_list.append(tmplst)
 cols = [col for col in ratings_complete.columns]
 df = pd.DataFrame(sum_list, columns=cols)
-x = df.values[:, 1:] #returns a numpy array
-minimax = preprocessing.MinMaxScaler()
-x_minimax_scaled = minimax.fit_transform(x.T).T
+data = df.values[:, 1:] #returns a numpy array
+gaussian_data = preprocessing.scale(data, axis=1)
+poi = np.load('/Users/Dennis/Downloads/Movielens-data-classification-master/comp-data/1-preprocessing-comp-data/user-feature-set-gaussian.npy')
 
-x_stdscl = preprocessing.scale(x, axis=1)
+np.save('processed-data/user-feature-set-orig.npy', data)
+np.save('processed-data/user-feature-set-gaussian.npy', gaussian_data)
 
-np.save('processed-data/user-feature-set-orig.npy', x)
-np.save('processed-data/user-feature-set-minimax.npy', x_minimax_scaled)
-np.save('processed-data/user-feature-set-stdscl.npy', x_stdscl)
-origin = np.load('processed-data//test/user-feature-set-orig.npy')
-minmaxiii = np.load('processed-data//test/user-feature-set-minimax.npy')
-stds = np.load('processed-data//test/user-feature-set-stdscl.npy')
+

@@ -20,11 +20,11 @@ class BSAS:
         self.clusters = {}
         self.centroids = {}
 
-    def fit_best(self, data, n_times=200, n_theta=50, load_precalculated=True):
+    def fit_best(self, data, n_times=50, n_theta=50, load_precalculated=True):
 
-        N, l = data.shape
+        l, N = data.shape
         if not(load_precalculated):
-            minDist, maxDist = self.getEuclideanDistances(data, l)
+            minDist, maxDist = self.getEuclideanDistances(data, N)
             np.save('processed-data/BSAS-data/min-max-euclidean-distances-gaussian.npy',np.array([minDist, maxDist], dtype=np.float))
             print('saved: processed-data/BSAS-data/min-max-euclidean-distances-gaussian.npy')
         else:
@@ -37,43 +37,42 @@ class BSAS:
 
         s = (theta_max - theta_min) / (n_theta - 1)
         print(theta_min, theta_max, s)
-        order1 = np.load('processed-data/BSAS-data/order-gaussian.npy')
         if not (load_precalculated):
             total_clusters = []
+            total_order = []
             total_theta = np.arange(theta_min, theta_max + s, s)
             for theta in tqdm(total_theta, desc=('Running BSAS...')):
 
                 max_clusters = -np.inf
                 for i in np.arange(n_times):
-                    clf = BSAS(theta=theta, q=l)
-                    order = np.random.permutation(range(l))
+                    clf = BSAS(theta=theta, q=N)
+                    order = np.random.permutation(N)
                     clf.fit(data, order)
                     clusters, centroids = clf.predict()
                     clustersN = len(clusters)
 
                     if (clustersN > max_clusters):
-                        if np.array_equal(order1,order):
-                            print("FOUND IT")
-                            np.save('processed-data/BSAS-data/orderFOUND.npy')
                         max_clusters = clustersN
                         order_max = order
+                total_order = [total_order] + [order_max]
                 total_clusters = total_clusters + [max_clusters]
 
             np.save('processed-data/BSAS-data/total_clusters-gaussian.npy', np.array(total_clusters, dtype=np.int))
             print('saved: processed-data/BSAS-data/total_clusters.npy')
-            np.save('processed-data/BSAS-data/order-gaussian-12.npy', order_max)
+            np.save('processed-data/BSAS-data/order-gaussian.npy', np.array(total_order))
             print('saved: processed-data/BSAS-data/order-gaussian.npy')
             np.save('processed-data/BSAS-data/total_theta-gaussian.npy', np.array(total_theta, dtype=np.float))
             print('saved: processed-data/BSAS-data/total_theta.npy')
         else:
             total_clusters = np.load('processed-data/BSAS-data/total_clusters-gaussian.npy')
+            print(total_clusters)
             print('loaded: processed-data/BSAS-data/total_clusters-gaussian.npy')
             total_theta = np.load('processed-data/BSAS-data/total_theta-gaussian.npy')
             print('loaded: processed-data/BSAS-data/total_theta-gaussian.npy')
 
 
         matplot.plot(total_theta, total_clusters, 'b-')
-        print(total_clusters)
+
         matplot.xlabel('Theta')
         matplot.ylabel('Number of clusters')
         matplot.title('Numbers clusters in corellation to theta')
@@ -98,8 +97,8 @@ class BSAS:
         clusters[m - 1] = sample_one
         centroids[m - 1] = np.add(np.zeros_like(sample_one), sample_one)
 
-        N, l = data.shape
-        for i in range(1, l):
+        l, N = data.shape
+        for i in range(1, N):
             sample = data[:, order[i]]
             dist, k = self.closestCluster(clusters, centroids, sample)
             if ((dist > self.theta) and (m < self.q)):
@@ -168,15 +167,6 @@ class BSAS:
 
         return minED, maxED
 
-    def findIndexofMax(self, dct):
-        minVal = np.inf
-        minKey = None
-        for key in dct:
-            tmp = dct[key]
-            if (tmp < minVal):
-                minVal = tmp
-                minKey = key
-        return minKey
 
     def findOptimalCluster(self, clusters):
         clusters_frq = {}

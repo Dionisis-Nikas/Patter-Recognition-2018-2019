@@ -12,8 +12,6 @@ from scipy.spatial.distance import cdist
 import pandas as pd
 import BSAS_algorithm as bsalg
 
-
-
 #######################################################################
 #                      LOAD THE DATASET                               #
 #######################################################################
@@ -21,12 +19,20 @@ import BSAS_algorithm as bsalg
 #
 data_gaussian = np.load('processed-data/user-feature-set-gaussian.npy')
 
-model_gaussian = bsalg.BSAS()
-model_gaussian.fit_best(data_gaussian.T, load_precalculated=True, n_times=50)
-theta_params, q_clusters = model_gaussian.param()
 
-order2 = np.random.permutation(range(data_gaussian.shape[0]))
-order = np.load('processed-data/BSAS-data/order-gaussian.npy')
+
+#######################################################################
+#      FIT THE DATA TO THE BSAS ALGORITHM AND GET THE ESTIMATIONS     #
+#######################################################################
+model_gaussian = bsalg.BSAS()
+model_gaussian.fit_best(data_gaussian.T,n_times=5, load_precalculated=False)
+
+##################################################################################
+#   FROM THE ESTIMATIONS GET THE BEST ORDER THAT GAVE THE MAX NUMBER OF CLUSTERS #
+#               AND COMPUTE CLUSTERS AND THEIR CENTROIDS                         #
+##################################################################################
+order = np.load('/Users/Dennis/Downloads/Movielens-data-classification-master/comp-data/2-bsas-comp-data/order-gaussian.npy')
+
 # The order that gave the max. number of clusters
 model_gaussian.fit(data_gaussian.T, order)
 
@@ -40,8 +46,9 @@ centroids_stdscl = np.array(centroids_stdscl)
 
 clusters_stdscl = []
 
-for X in data_gaussian:
-    tmp = cdist([X], centroids_stdscl, 'euclidean')
+for sample in data_gaussian:
+    tmp = cdist([sample], centroids_stdscl, 'euclidean')
+    mip = enumerate(tmp[0])
     min_index, min_value = min(enumerate(tmp[0]), key=lambda p: p[1])
     clusters_stdscl.append(min_index)
 
