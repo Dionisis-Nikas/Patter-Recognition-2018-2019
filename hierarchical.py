@@ -72,7 +72,7 @@ plt.show()
 #THE DENDOGRAM GAVE US 2-9 CLUSTERS SO WE WILL RUN THE K-MEANS (number of clusters) --> FOR ALL THE VALUES 2-9
 
 distortion_vector = []
-clusters_vector = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+clusters_vector = [2, 3, 4, 5, 6, 7, 8, 9]
 for k in tqdm(clusters_vector):
     kmean_alg = KMeans(n_clusters=k, n_init=20, precompute_distances=True, random_state=0, verbose=2)
     kmean_alg.fit(gausian_data)

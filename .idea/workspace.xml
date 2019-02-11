@@ -4,32 +4,7 @@
     <list default="true" id="0745188d-b510-433e-90bc-dbc7c5d7a932" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BSAS_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/BSAS_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BSAS_clustering.py" beforeDir="false" afterPath="$PROJECT_DIR$/BSAS_clustering.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_Preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_Preprocess.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hierarchical.py" beforeDir="false" afterPath="$PROJECT_DIR$/hierarchical.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k-means.py" beforeDir="false" afterPath="$PROJECT_DIR$/k-means.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plots.py" beforeDir="false" afterPath="$PROJECT_DIR$/plots.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/centroids-gaussian.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/centroids-gaussian.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/clusters-gaussian.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/clusters-gaussian.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/order-gaussian-12.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/order-gaussian-max.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/order-gaussian.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/order-gaussian.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/BSAS-data/total_clusters-gaussian.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/BSAS-data/total_clusters-gaussian.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/centroids_.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/cluster_centers_.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/cluster_centers_.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/clusters-gaussian.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/clusters.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/clusters.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/clusters_.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/movies.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/ratings3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/ratings4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/test/user-feature-set-minimax.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/test/user-feature-set-orig.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/test/user-feature-set-stdscl.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/train.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/user-feature-set-gaussian.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/user-feature-set-gaussian.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/user-feature-set-orig.npy" beforeDir="false" afterPath="$PROJECT_DIR$/processed-data/user-feature-set-orig.npy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processed-data/users.csv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,7 +27,7 @@
       <file leaf-file-name="least_squares_classifier.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/least_squares_classifier.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="255">
               <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -70,11 +45,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BSAS_algorithm.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BSAS_algorithm.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BSAS_algorithm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
+            <state relative-caret-position="202">
+              <caret line="125" column="49" selection-start-line="125" selection-start-column="49" selection-end-line="125" selection-end-column="49" />
+              <caret line="127" column="33" selection-start-line="127" selection-start-column="33" selection-end-line="127" selection-end-column="33" />
+              <caret line="128" column="52" selection-start-line="128" selection-start-column="52" selection-end-line="128" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -82,7 +59,7 @@
       <file leaf-file-name="BSAS_clustering.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BSAS_clustering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
+            <state relative-caret-position="360">
               <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
               <folding>
                 <element signature="e#435#453#0" expanded="true" />
@@ -91,20 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lonely_boy2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lonely_boy2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="68" column="24" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="data_Preprocess.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_Preprocess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1005">
-              <caret line="67" column="49" lean-forward="true" selection-start-line="67" selection-start-column="49" selection-end-line="67" selection-end-column="49" />
+            <state relative-caret-position="960">
+              <caret line="67" column="49" selection-start-line="67" selection-start-column="49" selection-end-line="67" selection-end-column="49" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -115,13 +83,13 @@
       <file leaf-file-name="hierarchical.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hierarchical.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1455">
-              <caret line="98" column="12" selection-start-line="98" selection-start-column="12" selection-end-line="98" selection-end-column="12" />
+            <state relative-caret-position="75">
+              <caret line="78" column="31" lean-forward="true" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plots.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="plots.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plots.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="190">
@@ -154,15 +122,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dists</find>
-      <find>if (load_precalculated</find>
-      <find>n_theta</find>
-      <find>clusters</find>
-      <find>stdscl</find>
-      <find>q_</find>
-      <find>theta_gaussian</find>
-      <find>K</find>
-      <find>distortions</find>
       <find>K_values</find>
       <find>K_clusters_vector</find>
       <find>clusters_</find>
@@ -183,7 +142,16 @@
       <find>findOptimalTheta</find>
       <find>theta_params</find>
       <find>c_bsas_pca</find>
+      <find>getEuclideanDistances</find>
+      <find>theta_min</find>
+      <find>theta_max</find>
+      <find>fit</find>
+      <find>clustersN</find>
+      <find>k</find>
+      <find>m</find>
+      <find>real_centroids</find>
       <find>X</find>
+      <find>Y</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -205,18 +173,18 @@
         <option value="$PROJECT_DIR$/bsaspp.py" />
         <option value="$PROJECT_DIR$/lonely_boy2.py" />
         <option value="$PROJECT_DIR$/data_Preprocess.py" />
-        <option value="$PROJECT_DIR$/BSAS_algorithm.py" />
         <option value="$PROJECT_DIR$/k-means.py" />
-        <option value="$PROJECT_DIR$/hierarchical.py" />
         <option value="$PROJECT_DIR$/BSAS_clustering.py" />
         <option value="$PROJECT_DIR$/plots.py" />
+        <option value="$PROJECT_DIR$/hierarchical.py" />
+        <option value="$PROJECT_DIR$/BSAS_algorithm.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="832" />
+    <option name="height" value="831" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -261,7 +229,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.plots">
+  <component name="RunManager" selected="Python.hierarchical">
     <configuration name="BSAS_clustering" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Patter-Recognition-2018-2019" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -361,8 +329,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.plots" />
         <item itemvalue="Python.hierarchical" />
+        <item itemvalue="Python.plots" />
         <item itemvalue="Python.BSAS_clustering" />
         <item itemvalue="Python.k-means" />
         <item itemvalue="Python.data_Preprocess" />
@@ -383,18 +351,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="29" width="1440" height="832" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="831" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22339676" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50069445" side_tool="true" weight="0.2781457" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49930555" visible="true" weight="0.48163265" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49930555" weight="0.48092642" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49930555" weight="0.27210885" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49930555" visible="true" weight="0.27111718" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -431,11 +399,26 @@
           <line>36</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical.py</url>
+          <line>102</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical.py</url>
+          <line>103</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical.py</url>
+          <line>104</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="73" />
+      <option name="time" value="76" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -694,7 +677,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/least_squares_classifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="255">
           <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -702,27 +685,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lonely_boy2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="68" column="24" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/lonely_boy2.py" />
     <entry file="file://$PROJECT_DIR$/data_Preprocess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1005">
-          <caret line="67" column="49" lean-forward="true" selection-start-line="67" selection-start-column="49" selection-end-line="67" selection-end-column="49" />
+        <state relative-caret-position="960">
+          <caret line="67" column="49" selection-start-line="67" selection-start-column="49" selection-end-line="67" selection-end-column="49" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BSAS_algorithm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="22" column="38" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -735,7 +705,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BSAS_clustering.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
+        <state relative-caret-position="360">
           <caret line="27" column="49" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
           <folding>
             <element signature="e#435#453#0" expanded="true" />
@@ -743,17 +713,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hierarchical.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="98" column="12" selection-start-line="98" selection-start-column="12" selection-end-line="98" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plots.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hierarchical.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="78" column="31" lean-forward="true" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BSAS_algorithm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="125" column="49" selection-start-line="125" selection-start-column="49" selection-end-line="125" selection-end-column="49" />
+          <caret line="127" column="33" selection-start-line="127" selection-start-column="33" selection-end-line="127" selection-end-column="33" />
+          <caret line="128" column="52" selection-start-line="128" selection-start-column="52" selection-end-line="128" selection-end-column="52" />
         </state>
       </provider>
     </entry>

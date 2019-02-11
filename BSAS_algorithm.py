@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 
 
-class BSAS:
+class BSAS_model:
     # The constructor of an BSAS object
     def __init__(self, theta=None, q=None):
         # theta: the dissimilarity threshold
@@ -20,55 +20,54 @@ class BSAS:
         self.clusters = {}
         self.centroids = {}
 
-    def fit_best(self, data, n_times=50, n_theta=50, load_precalculated=True):
+    def calc_BSAS_data(self, data, n_times=50, n_theta=50, load_precalculated=True):
 
         l, N = data.shape
         if not(load_precalculated):
-            minDist, maxDist = self.getEuclideanDistances(data, N)
-            np.save('processed-data/BSAS-data/min-max-euclidean-distances-gaussian.npy',np.array([minDist, maxDist], dtype=np.float))
-            print('saved: processed-data/BSAS-data/min-max-euclidean-distances-gaussian.npy')
+            minDist, maxDist = self.euclideanDistance(data, N)
+            np.save('processed-data/BSAS-data/euclidean-distances.npy',np.array([minDist, maxDist], dtype=np.float))
+            print('saved: processed-data/BSAS-data/euclidean-distances.npy')
         else:
-            minDist, maxDist = np.load('processed-data/BSAS-data/min-max-euclidean-distances-gaussian.npy')
-            print('loaded: processed-data/BSAS-data/min-max-euclidean-distances-gaussian.npy')
+            minDist, maxDist = np.load('processed-data/BSAS-data/euclidean-distances.npy')
+            print('loaded: processed-data/BSAS-data/euclidean-distances.npy')
 
         meanDist = (minDist + maxDist) / 2
-        theta_min = 0.25 * meanDist
-        theta_max = 1.75 * meanDist
+        minimum_theta = 0.25 * meanDist
+        maximum_theta = 1.75 * meanDist
 
-        s = (theta_max - theta_min) / (n_theta - 1)
-        print(theta_min, theta_max, s)
+        s = (maximum_theta - minimum_theta) / (n_theta - 1)
+        print(minimum_theta, maximum_theta, s)
         if not (load_precalculated):
             total_clusters = []
             total_order = []
-            total_theta = np.arange(theta_min, theta_max + s, s)
-            for theta in tqdm(total_theta, desc=('Running BSAS...')):
+            total_theta = np.arange(minimum_theta, maximum_theta + s, s)
+            for theta in tqdm(total_theta, desc=('Please wait until the BSAS algorithm is complete --->')):
 
                 max_clusters = -np.inf
                 for i in np.arange(n_times):
-                    clf = BSAS(theta=theta, q=N)
+                    clf = BSAS_model(theta=theta, q=N)
                     order = np.random.permutation(N)
-                    clf.fit(data, order)
+                    clf.run_BSAS(data, order)
                     clusters, centroids = clf.predict()
-                    clustersN = len(clusters)
+                    clusterCount = len(clusters)
 
-                    if (clustersN > max_clusters):
-                        max_clusters = clustersN
+                    if (clusterCount > max_clusters):
+                        max_clusters = clusterCount
                         order_max = order
                 total_order = [total_order] + [order_max]
                 total_clusters = total_clusters + [max_clusters]
 
-            np.save('processed-data/BSAS-data/total_clusters-gaussian.npy', np.array(total_clusters, dtype=np.int))
-            print('saved: processed-data/BSAS-data/total_clusters.npy')
+            np.save('processed-data/BSAS-data/all_clusters-gaussian.npy', np.array(total_clusters, dtype=np.int))
+            print('saved: processed-data/BSAS-data/all_clusters-gaussian.npy')
             np.save('processed-data/BSAS-data/order-gaussian.npy', np.array(total_order))
             print('saved: processed-data/BSAS-data/order-gaussian.npy')
-            np.save('processed-data/BSAS-data/total_theta-gaussian.npy', np.array(total_theta, dtype=np.float))
-            print('saved: processed-data/BSAS-data/total_theta.npy')
+            np.save('processed-data/BSAS-data/all_theta-gaussian.npy', np.array(total_theta, dtype=np.float))
+            print('saved: processed-data/BSAS-data/all_theta-gaussian.npy')
         else:
-            total_clusters = np.load('processed-data/BSAS-data/total_clusters-gaussian.npy')
-            print(total_clusters)
-            print('loaded: processed-data/BSAS-data/total_clusters-gaussian.npy')
-            total_theta = np.load('processed-data/BSAS-data/total_theta-gaussian.npy')
-            print('loaded: processed-data/BSAS-data/total_theta-gaussian.npy')
+            total_clusters = np.load('processed-data/BSAS-data/all_clusters-gaussian.npy')
+            print('loaded: processed-data/BSAS-data/all_clusters-gaussian.npy')
+            total_theta = np.load('processed-data/BSAS-data/all_theta-gaussian.npy')
+            print('loaded: processed-data/BSAS-data/all_theta-gaussian.npy')
 
 
         matplot.plot(total_theta, total_clusters, 'b-')
@@ -80,34 +79,34 @@ class BSAS:
         matplot.show()
 
         opt_cluster = self.findOptimalCluster(total_clusters)
-        print(opt_cluster)
+        print("The optimal cluster number is: %s"%(opt_cluster))
         opt_theta = self.findOptimalTheta(opt_cluster, total_clusters, total_theta)
-        print(opt_theta)
+        print("The optimal theta is: %s" % (opt_theta))
 
         self.theta = opt_theta
         self.q = opt_cluster
 
 
-    def fit(self, data, order):
-        m = 1  # Count of cluster/centroids
+    def run_BSAS(self, data, order):
+        cluster_count = 1  # Count of cluster/centroids
         clusters = {}
         centroids = {}
 
         sample_one = data[:, order[0]]
-        clusters[m - 1] = sample_one
-        centroids[m - 1] = np.add(np.zeros_like(sample_one), sample_one)
+        clusters[cluster_count - 1] = sample_one
+        centroids[cluster_count - 1] = np.add(np.zeros_like(sample_one), sample_one)
 
         l, N = data.shape
         for i in range(1, N):
             sample = data[:, order[i]]
-            dist, k = self.closestCluster(clusters, centroids, sample)
-            if ((dist > self.theta) and (m < self.q)):
-                m += 1
-                clusters[m - 1] = sample
-                centroids[m - 1] = np.add(np.zeros_like(sample), sample)
+            distance, index = self.closestCluster(clusters, centroids, sample)
+            if ((distance > self.theta) and (cluster_count < self.q)):
+                cluster_count += 1
+                clusters[cluster_count - 1] = sample
+                centroids[cluster_count - 1] = np.add(np.zeros_like(sample), sample)
             else:
-                clusters[k] = np.vstack((clusters[k], sample))
-                centroids[k] = np.add(centroids[k], sample)
+                clusters[index] = np.vstack((clusters[index], sample))
+                centroids[index] = np.add(centroids[index], sample)
 
 
         self.clusters = clusters
@@ -115,21 +114,21 @@ class BSAS:
 
 
     def predict(self):
-        real_centroids = {}
+        predicted_centroids = {}
         for key in self.clusters:
-            real_centroids[key] = self.getCentroid(self.centroids[key], self.clusters[key].shape)
+            predicted_centroids[key] = self.getCentroid(self.centroids[key], self.clusters[key].shape)
 
-        return self.clusters, real_centroids
+        return self.clusters, predicted_centroids
 
     def param(self):
         return self.theta, self.q
 
-    def getCentroid(self, X, Y):
+    def getCentroid(self, centroid, cluster_count):
         try:
-            probe = Y[1]
-            return np.divide(X, Y[0])
+            probe = cluster_count[1]
+            return np.divide(centroid, cluster_count[0])
         except:
-            return X
+            return centroid
 
     def closestCluster(self, clusters, centroids, sample):
         centID = 0
@@ -151,7 +150,7 @@ class BSAS:
             pass
         return minDist, centID
 
-    def getEuclideanDistances(self, data, size):
+    def euclideanDistance(self, data, size):
         minED = np.inf
         maxED = -np.inf
 
