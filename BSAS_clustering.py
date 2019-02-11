@@ -17,51 +17,49 @@ import BSAS_algorithm as bsalg
 #######################################################################
 #The data_gaussian contains the samples normalized with mean = 0 and std = 1 (gaussian -normal- distribution)
 #
-data_gaussian = np.load('processed-data/user-feature-set-gaussian.npy')
+data_gaussian = np.load('processed-data/gaussian-dataset.npy')
 
 
 
 #######################################################################
 #      FIT THE DATA TO THE BSAS ALGORITHM AND GET THE ESTIMATIONS     #
 #######################################################################
-model_gaussian = bsalg.BSAS()
-model_gaussian.fit_best(data_gaussian.T,n_times=5, load_precalculated=False)
+model_gaussian = bsalg.BSAS_model()
+model_gaussian.calc_BSAS_data(data_gaussian.T,n_times=5, load_precalculated=False)
 
 ##################################################################################
 #   FROM THE ESTIMATIONS GET THE BEST ORDER THAT GAVE THE MAX NUMBER OF CLUSTERS #
 #               AND COMPUTE CLUSTERS AND THEIR CENTROIDS                         #
 ##################################################################################
-order = np.load('/Users/Dennis/Downloads/Movielens-data-classification-master/comp-data/2-bsas-comp-data/order-gaussian.npy')
+order = np.random.permutation(range(data_gaussian.shape[0]))
 
 # The order that gave the max. number of clusters
-model_gaussian.fit(data_gaussian.T, order)
+model_gaussian.run_BSAS(data_gaussian.T, order)
 
-clusters_, centroids_ = model_gaussian.predict()
+clusters, centroids = model_gaussian.predict()
 
-centroids_stdscl = []
-for key in centroids_:
-    centroids_stdscl.append(centroids_[key])
+centroids_gaussian = []
+for key in centroids:
+    centroids_gaussian.append(centroids[key])
+centroids_gaussian = np.array(centroids_gaussian)
 
-centroids_stdscl = np.array(centroids_stdscl)
-
-clusters_stdscl = []
+clusters_gaussian = []
 
 for sample in data_gaussian:
-    tmp = cdist([sample], centroids_stdscl, 'euclidean')
-    mip = enumerate(tmp[0])
-    min_index, min_value = min(enumerate(tmp[0]), key=lambda p: p[1])
-    clusters_stdscl.append(min_index)
+    tmp = cdist([sample], centroids_gaussian, 'euclidean')
+    count = enumerate(tmp[0])
+    index, minimum_value = min(count, key=lambda p: p[1])
+    clusters_gaussian.append(index)
 
-tmp = pd.DataFrame(data_gaussian)
-tmp[19] = clusters_stdscl
+final_data = pd.DataFrame(data_gaussian)
+final_data[19] = clusters_gaussian
 
-new_centroids_stdscl = tmp.groupby([19]).mean()
-new_centroids_stdscl = new_centroids_stdscl.values
+final_centroids_gaussian = final_data.groupby([19]).mean()
+final_centroids_gaussian = final_centroids_gaussian.values
 
-print(clusters_stdscl)
-print(new_centroids_stdscl)
+print(clusters_gaussian)
+print(final_centroids_gaussian)
 
 
-#np.save('processed-data/BSAS-data/order-gaussian.npy', order)
-np.save('processed-data/BSAS-data/clusters-gaussian.npy', clusters_stdscl)
-np.save('processed-data/BSAS-data/centroids-gaussian.npy', new_centroids_stdscl)
+np.save('processed-data/BSAS-data/clusters-gaussian.npy', clusters_gaussian)
+np.save('processed-data/BSAS-data/centroids-gaussian.npy', final_centroids_gaussian)

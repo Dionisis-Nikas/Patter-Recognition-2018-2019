@@ -54,7 +54,7 @@ class BSAS_model:
                     if (clusterCount > max_clusters):
                         max_clusters = clusterCount
                         order_max = order
-                total_order = [total_order] + [order_max]
+                total_order = total_order + [order_max]
                 total_clusters = total_clusters + [max_clusters]
 
             np.save('processed-data/BSAS-data/all_clusters-gaussian.npy', np.array(total_clusters, dtype=np.int))
@@ -78,9 +78,9 @@ class BSAS_model:
         matplot.grid()
         matplot.show()
 
-        opt_cluster = self.findOptimalCluster(total_clusters)
+        opt_cluster = self.bestClusterNumber(total_clusters)
         print("The optimal cluster number is: %s"%(opt_cluster))
-        opt_theta = self.findOptimalTheta(opt_cluster, total_clusters, total_theta)
+        opt_theta = self.bestTheta(opt_cluster, total_clusters, total_theta)
         print("The optimal theta is: %s" % (opt_theta))
 
         self.theta = opt_theta
@@ -113,10 +113,107 @@ class BSAS_model:
         self.centroids = centroids
 
 
+
+    def closestCluster(self, clusters, centroids, sample):
+        centroid_id = 0
+        cluster_count = clusters[centroid_id].shape
+        centroid = self.getCentroid(centroids[centroid_id], cluster_count)
+
+        minDist = euclidean(centroid, sample)
+        try:
+            for ID in centroids:
+                if (ID == 0):
+                    continue
+                cluster_count = clusters[ID].shape
+                centroid = self.getCentroid(centroids[ID], cluster_count)
+                distance = euclidean(centroid, sample)
+                if (distance < minDist):
+                    minDist = distance
+                    centroid_id = ID
+        except:
+            pass
+        return minDist, centroid_id
+
+    def euclideanDistance(self, data, size):
+        min_euclidean = np.inf
+        max_euclidean = -np.inf
+
+        for i in tqdm(range(size), desc='Caclulating the euclidean distances of the dataset, please wait...-->'):
+            for j in range(size):
+                if (i == j):
+                    continue #because we want j to be i+1
+                distance = euclidean(data[:, i], data[:, j])
+                if (distance < min_euclidean):
+                    min_euclidean = distance
+                if (distance > max_euclidean):
+                    max_euclidean = distance
+
+        return min_euclidean, max_euclidean
+
+
+    def bestClusterNumber(self, clusters):
+        cluster_appereances = {}
+        smallest_cluster = np.min(clusters)
+        for cluster_number in tqdm(clusters, desc='Caclulating the best number of cluster, please wait...-->'):
+            if (cluster_number == smallest_cluster):
+                continue
+            try:
+                cluster_appereances[cluster_number] += 1
+            except:
+                cluster_appereances[cluster_number] = 1
+
+        best_cluster = None;
+        best_cluster_appereances = -np.inf
+
+        for index in cluster_appereances:
+            tmp = cluster_appereances[index]
+            if (tmp > best_cluster_appereances):
+                best_cluster_appereances = tmp
+                best_cluster = index
+        return best_cluster
+
+    def bestTheta(self, bestCluster, clusters, theta):
+
+        cluster_startpoint = 0
+        cluster_endpoint = 0
+
+
+        found = False
+        range_list = {}
+        for i in range(len(clusters)):
+            if clusters[i] == bestCluster:
+                if not found:
+                    cluster_startpoint = i
+                    cluster_endpoint = i
+                    found = True
+                else:
+                    cluster_endpoint += 1
+            else:
+                if (found):
+                    tmp = [cluster_startpoint, cluster_endpoint, (cluster_endpoint - cluster_startpoint)]
+                    range_list[i] = tmp
+
+        cluster_index_key = None
+        for index in range_list:
+            max_range = -np.inf
+            differ = range_list[index][2]
+            if (differ > max_range):
+                max_range = differ
+                cluster_index_key = index
+
+        bestTheta_range = range_list[cluster_index_key]
+        averageTheta = 0
+        for i in range(bestTheta_range[0], bestTheta_range[1] + 1):
+            averageTheta += theta[i]
+
+        averageTheta = averageTheta / (bestTheta_range[1] - bestTheta_range[0] + 1)
+        return averageTheta
+
+
     def predict(self):
         predicted_centroids = {}
-        for key in self.clusters:
-            predicted_centroids[key] = self.getCentroid(self.centroids[key], self.clusters[key].shape)
+        for index in self.clusters:
+            predicted_centroids[index] = self.getCentroid(self.centroids[index], self.clusters[index].shape)
 
         return self.clusters, predicted_centroids
 
@@ -125,104 +222,9 @@ class BSAS_model:
 
     def getCentroid(self, centroid, cluster_count):
         try:
-            probe = cluster_count[1]
+            null_checker = cluster_count[1]
             return np.divide(centroid, cluster_count[0])
         except:
             return centroid
-
-    def closestCluster(self, clusters, centroids, sample):
-        centID = 0
-        cluster_population = clusters[centID].shape
-        centroid = self.getCentroid(centroids[centID], cluster_population)
-
-        minDist = euclidean(centroid, sample)
-        try:
-            for cntID in centroids:
-                if (cntID == 0):
-                    continue
-                cluster_population = clusters[cntID].shape
-                centroid = self.getCentroid(centroids[cntID], cluster_population)
-                tmp = euclidean(centroid, sample)
-                if (tmp < minDist):
-                    minDist = tmp
-                    centID = cntID
-        except:
-            pass
-        return minDist, centID
-
-    def euclideanDistance(self, data, size):
-        minED = np.inf
-        maxED = -np.inf
-
-        for column_i in tqdm(range(size), desc='Computing (Min/Max) Euclidean Distances...'):
-            for column_j in range(size):
-                if (column_i == column_j):
-                    continue
-                dist = euclidean(data[:, column_i], data[:, column_j])
-                if (dist < minED):
-                    minED = dist
-                if (dist > maxED):
-                    maxED = dist
-
-        return minED, maxED
-
-
-    def findOptimalCluster(self, clusters):
-        clusters_frq = {}
-        min_cluster = np.min(clusters)
-        for cluster in tqdm(clusters, desc='Finding Optimal Cluster...'):
-            if (cluster == min_cluster):
-                continue
-            try:
-                clusters_frq[cluster] += 1
-            except:
-                clusters_frq[cluster] = 1
-        opt_cluster = None;
-        frq_opt_cluster = -np.inf
-
-        for key in clusters_frq:
-            tmp = clusters_frq[key]
-            if (tmp > frq_opt_cluster):
-                frq_opt_cluster = tmp
-                opt_cluster = key
-        return opt_cluster
-
-    def findOptimalTheta(self, opt_cluster, clusters, theta):
-        cl_start = 0;
-        cl_fin = 0;
-        cl_key = None
-        found = False
-        cl_ranges = {}
-
-        for i in range(len(clusters)):
-            if (clusters[i] == opt_cluster):
-                if (not found):
-                    cl_start = i
-                    cl_fin = i
-                    found = True
-                else:
-                    cl_fin += 1
-            else:
-                if (found):
-                    tmp = [cl_start, cl_fin, (cl_fin - cl_start)]
-                    cl_ranges[i] = tmp
-
-        for key in cl_ranges:
-            max_range = -np.inf
-            val = cl_ranges[key][2]
-            if (val > max_range):
-                max_range = val
-                cl_key = key
-
-        opt_theta_range = cl_ranges[cl_key]
-        theta_avg = 0
-        for i in range(opt_theta_range[0], opt_theta_range[1] + 1):
-            theta_avg += theta[i]
-
-        theta_avg = theta_avg / (opt_theta_range[1] - opt_theta_range[0] + 1)
-        return theta_avg
-
-
-
 
 

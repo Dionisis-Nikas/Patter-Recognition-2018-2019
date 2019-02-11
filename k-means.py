@@ -4,7 +4,7 @@ from sklearn.cluster import KMeans
 #ΤΟ ΑΡΧΕΙΟ ΠΟΥ ΕΧΕΙ ΜΕΣΑ ΤΟ np.load ΕΙΝΑΙ ΤΟ ΑΡΧΕΙΟ ΠΟΥ ΘΑ ΦΟΡΤΩΣΟΥΜΕ ΜΕ ΤΙ ΑΛΛΑΓΕΣ ΠΟΥ ΕΧΟΥΝ ΓΙΝΕΙ ΑΠΟ ΤΟ bsas
 #ΜΠΟΡΟΥΜΕ ΝΑ ΤΟ ΟΝΟΜΑΣΟΥΜΕ ΟΠΩΣ ΘΕΛΟΥΜΕ, ΑΠΛΑ ΤΟ ΑΦΗΝΩ ΕΤΣΙ ΓΙΑ ΝΑ ΤΟ ΒΡΙΣΚΟΥΜΕ ΤΩΡΑ ΠΙΟ ΕΥΚΟΛΑ
 
-features = np.load('processed-data/user-feature-set-gaussian.npy')
+features = np.load('processed-data/gaussian-dataset.npy')
 
 #ΑΡΧΙΚΟΠΟΙΗΣΗ ΤΟΥ k-means ΑΛΓΟΡΙΘΜΟΥ ΓΙΑ 2 ΟΜΑΔΟΠΟΙΗΣΕΙΣ (clusters)
 #n_init ΠΟΣΕΣ ΦΟΡΕΣ ΘΑ ΤΡΕΞΕΙ Ο ΑΛΓΟΡΙΘΜΟΣ k-means ΜΕ ΔΙΑΦΟΡΕΤΙΚΑ ΚΕΝΤΡΟΕΙΔΗ

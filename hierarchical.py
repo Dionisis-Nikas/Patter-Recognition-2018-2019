@@ -22,7 +22,7 @@ from tqdm import tqdm
 #######################################################################
 
 #TO ΑΡΧΕΙΟ ΑΠΟ ΤΙΣ ΠΡΩΤΕΣ ΕΠΕΞΕΡΓΑΣΙΕΣ. ΒΡΙΣΚΕΤΕ ΣΤΟ ΤΕΛΟΣ ΚΑΙ ΕΙΝΑΙ ΑΥΤΟ ΠΟΥ ΤΟΥ ΕΧΕΙ ΔΩΘΕΙ ΤΟ ΟΝΟΜΑ x_stdscl
-gausian_data = np.load('processed-data/user-feature-set-gaussian.npy')
+gausian_data = np.load('processed-data/gaussian-dataset.npy')
 
 ############################################################################
 #CREATE THE LINKAGE MATRIX AND PLOT THE HIERARCHICAL CLUSTERING DENDOGRAM  #

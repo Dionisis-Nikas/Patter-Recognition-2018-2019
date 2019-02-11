@@ -50,7 +50,7 @@ def plot_pca_cluster(type='None',label_data=None):
     plt.show()
 
 
-data_gaussian = np.load('processed-data/user-feature-set-gaussian.npy')
+data_gaussian = np.load('processed-data/gaussian-dataset.npy')
 
 #  ΤΟ y_bsas ΠΕΡΙΕΧΕΙ ΤΙΣ ΕΤΙΚΕΤΕΣ ΟΜΑΔΟΠΟΙΗΣΗΣ ΒΑΣΗ ΤΟΥ bsas ΑΛΓΟΡΙΘΜΟΥ
 label_bsas = np.load('processed-data/BSAS-data/clusters-gaussian.npy')

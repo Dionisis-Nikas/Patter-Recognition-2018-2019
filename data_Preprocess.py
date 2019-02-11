@@ -66,9 +66,8 @@ cols = [col for col in ratings_complete.columns]
 df = pd.DataFrame(sum_list, columns=cols)
 data = df.values[:, 1:] #returns a numpy array
 gaussian_data = preprocessing.scale(data, axis=1)
-poi = np.load('/Users/Dennis/Downloads/Movielens-data-classification-master/comp-data/1-preprocessing-comp-data/user-feature-set-gaussian.npy')
 
-np.save('processed-data/user-feature-set-orig.npy', data)
-np.save('processed-data/user-feature-set-gaussian.npy', gaussian_data)
+np.save('processed-data/original-dataset.npy', data)
+np.save('processed-data/gaussian-dataset.npy', gaussian_data)
 
 
